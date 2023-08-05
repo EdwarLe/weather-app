@@ -21,15 +21,21 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-
+  const imgBgSave = bgImgWeather[weatherInfo?.weather[0].id];
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   }, [typeMeasurement]);
 
   return (
     <main
-      className={`bg-[url('${bgImgWeather[weatherInfo?.weather[0].id]}')] min-h-screen text-black flex justify-center items-center p-4 font-Lato`}
+      className={`bg-[url('${imgBgSave}')] min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato`}
     >
+      <form className="rounded-full overflow-hidden">
+        <input
+          className="py-2 px-4 text-center" type="text" placeholder="Type the city..."
+        />
+        <button className="bg-slate-950 py-2 px-4 text-white">Search</button>
+      </form>
       <Weather
         weatherInfo={weatherInfo}
         typeMeasurement={typeMeasurement}
