@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Weather from "./components/Weather";
+import { bgImgWeather } from "./components/temp";
 
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
@@ -20,30 +21,6 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const handleChangeMeasurement = () => {
-    if (typeMeasurement !== "metric") {
-      setTypeMeasurement("metric");
-    } else {
-      setTypeMeasurement("imperial");
-    }
-  };
-
-  const bgImgWeather = () => {
-    const weatherId = 800; /*weatherInfo?.weather[0].id*/
-    let bg = "";
-    if (weatherId === 801) bg = "fewClouds";
-    if (weatherId === 803) bg = "brokenClouds";
-    if (weatherId === 804) bg = "overcastClouds";
-    if (weatherId === 800) bg = "clearSky";
-    if (weatherId >= 600 && weatherId <= 622) bg = "snow";
-    if (weatherId >= 504 && weatherId <= 531) bg = "extremeRain";
-    if (weatherId >= 500 && weatherId <= 503) bg = "moderateRain";
-    if (weatherId >= 200 && weatherId <= 232) bg = "thunderstorm";
-
-    return bg;
-  };
-
-  console.log(bgImgWeather());
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
@@ -51,12 +28,12 @@ function App() {
 
   return (
     <main
-      className={`bg-[url("/images/${bgImgWeather()}.webp")] min-h-screen text-black flex justify-center items-center p-4 font-Lato`}
+      className={`bg-[url('${bgImgWeather[weatherInfo?.weather[0].id]}')] min-h-screen text-black flex justify-center items-center p-4 font-Lato`}
     >
       <Weather
         weatherInfo={weatherInfo}
-        handleChangeMeasurement={handleChangeMeasurement}
         typeMeasurement={typeMeasurement}
+        setTypeMeasurement={setTypeMeasurement}
       />
     </main>
   );

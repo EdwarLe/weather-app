@@ -1,6 +1,6 @@
 const WeatherStats = ({ weatherInfo, src, typeMeassure }) => {
   return (
-    <article className="grid grid-cols-[0.5fr_1fr] place-items-center">
+    <article className="grid grid-cols-[0.5fr_1fr] place-items-center px-2">
       <div>
         <img className="h-5" src={src} alt="" />
       </div>
