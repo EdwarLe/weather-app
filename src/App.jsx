@@ -28,7 +28,7 @@ function App() {
 
   return (
     <main
-      className={`bg-[url('${imgBgSave}')] min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato`}
+      className={`${imgBgSave} min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato`}
     >
       <form className="rounded-full overflow-hidden">
         <input
