@@ -9,7 +9,7 @@ const FormSearchCity = ({
   const handleCitySearch = (e) => {
     e.preventDefault();
     const valueSearched = e.target.btnCitySearch.value;
-    updateSearchCity(valueSearched);
+    updateSearchCity(valueSearched.trim());
 
     valueSearched.length === 0 ? setSearchEmpty(true) : setSearchEmpty(false);
   };
