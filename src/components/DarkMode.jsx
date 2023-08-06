@@ -25,7 +25,7 @@ const DarkMode = () => {
 
   return (
     <div onClick={handleDarkMode} className="top-1 right-4 absolute">
-      <i className="bx bxs-brightness-half text-3xl text-cyan-500 transition-all duration-500 cursor-pointer hover:rotate-180  dark:text-yellow-400"></i>
+      <i className="bx bxs-brightness-half text-3xl text-cyan-500 transition-all duration-500 cursor-pointer hover:rotate-180 hover:text-yellow-400  dark:text-yellow-400 dark:hover:text-cyan-500"></i>
     </div>
   );
 };
