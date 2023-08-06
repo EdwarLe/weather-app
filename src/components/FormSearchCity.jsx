@@ -34,12 +34,12 @@ const FormSearchCity = ({
         }
         autoComplete="off"
       />
-      <button className="bg-slate-950 py-2 px-4 flex justify-center items-center text-white dark:bg-sky-700">
+      <button className="bg-slate-950 py-2 px-4 flex justify-center items-center hover:bg-slate-600 transition-colors text-white dark:bg-sky-700 hover:dark:bg-sky-300">
         {language === "en" ? "Search" : "Buscar"}
       </button>
       <a
         onClick={resetLocation}
-        className="bg-slate-800 py-3 px-4 text-white cursor-pointer flex justify-center w-full dark:bg-sky-400"
+        className="bg-slate-800 hover:bg-slate-500 transition-colors py-3 px-4 text-white cursor-pointer flex justify-center w-full dark:bg-sky-400 hover:dark:bg-sky-900"
       >
         {language === "en" ? "Clear" : "Limpiar"}
       </a>

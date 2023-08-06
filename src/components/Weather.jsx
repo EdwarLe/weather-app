@@ -61,7 +61,7 @@ const Weather = ({
         onClick={() =>
           handleChangeMeasurement(setTypeMeasurement, updateSearchCity)
         }
-        className="bg-white rounded-full w-40 py-2 text-blue-800 dark:bg-slate-950 dark:text-white"
+        className="bg-white rounded-full w-40 py-2 text-blue-800 dark:bg-slate-950 dark:text-white hover:bg-slate-950 hover:text-white transition-colors hover:dark:bg-sky-700"
       >
         {language === "en"
           ? typeMeasurement === "metric"

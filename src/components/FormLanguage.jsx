@@ -10,7 +10,7 @@ const FormLanguage = ({ setLanguage, language }) => {
         name="laguages"
         id="lang"
         onChange={handleLanguage}
-        className="bg-white/0 text-slate-950 outline-none hover:bg-white/50 rounded-md dark:bg-black/0 dark:text-white"
+        className="bg-white/0 text-slate-950 outline-none hover:bg-white/50 rounded-md dark:bg-black/0 dark:text-white hover:dark:bg-slate-950/50 cursor-pointer"
       >
         <option value="en" className="bg-cyan-500 dark:bg-slate-950">
           🇺🇸
