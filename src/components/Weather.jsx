@@ -1,12 +1,13 @@
 import WeatherStats from "./WeatherStats";
 import countryList from "./../assets/slim-2.json";
-import { handleChangeMeasurement } from "./temp";
+import { handleChangeMeasurement } from "./utils/temp";
 
 const Weather = ({
   typeMeasurement,
   setTypeMeasurement,
   validateCitySearch,
   updateSearchCity,
+  language,
 }) => {
   const countryFound = (country) => {
     return country.alpha === validateCitySearch?.sys.country;
@@ -20,7 +21,7 @@ const Weather = ({
         {validateCitySearch?.name}, {countryName?.name}
       </h3>
       <section className="grid gap-4 w-full place-items-center sm:grid-cols-[auto_auto]">
-        <section className="bg-white/50 rounded-3xl w-full grid grid-cols-[auto_auto] place-items-center h-56 grid-rows-[auto_1fr] sm:h-72 dark:bg-black/50">
+        <section className="bg-white/50 rounded-3xl w-full grid grid-cols-[auto_auto] place-items-center h-40 grid-rows-[auto_auto] sm:h-72 dark:bg-black/50 min-[400px]:h-56">
           <h4 className="col-span-2 pt-4 capitalize">
             {validateCitySearch?.weather[0].description}
           </h4>
@@ -29,7 +30,7 @@ const Weather = ({
               ? `${Math.floor(validateCitySearch?.main.temp)}°C`
               : `${Math.floor(validateCitySearch?.main.temp)}°F`}
           </span>
-          <div className="pr-4">
+          <div className="w-3/4 min-[400px]:w-full">
             <img
               src={`https://openweathermap.org/img/wn/${validateCitySearch?.weather[0].icon}@4x.png`}
               alt=""
@@ -62,7 +63,13 @@ const Weather = ({
         }
         className="bg-white rounded-full w-40 py-2 text-blue-800 dark:bg-slate-950 dark:text-white"
       >
-        {typeMeasurement === "metric" ? `Cambiar a °F` : `Cambiar a °C`}
+        {language === "en"
+          ? typeMeasurement === "metric"
+            ? `Change to °F`
+            : `Change to °C`
+          : typeMeasurement === "metric"
+          ? `Cambiar a °F`
+          : `Cambiar a °C`}
       </button>
     </section>
   );

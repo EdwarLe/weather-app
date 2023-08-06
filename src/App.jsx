@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Weather from "./components/Weather";
-import { bgImgWeather } from "./components/temp";
+import { bgImgWeather } from "./components/utils/temp";
 import Loader from "./components/Loader";
 import DarkMode from "./components/DarkMode";
 import ModalErrorEmptyCitySearch from "./components/ModalErrorEmptyCitySearch";
 import FormSearchCity from "./components/FormSearchCity";
+import FormLanguage from "./components/FormLanguage";
 
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [typeMeasurement, setTypeMeasurement] = useState("metric");
   const [searchCity, setSearchCity] = useState(null);
   const [searchEmpty, setSearchEmpty] = useState(false);
-  const [language, setLanguage] = useState("es");
+  const [language, setLanguage] = useState("en");
 
   const API_KEY = "2927d2b080299fce6de576324ebf243f";
 
@@ -31,7 +32,7 @@ function App() {
   const imgBgSave = bgImgWeather[validateCitySearch?.weather[0].icon];
 
   const updateSearchCity = (valueSearched) => {
-    const URL_CITY = `https://api.openweathermap.org/data/2.5/weather?q=${valueSearched}&appid=${API_KEY}&units=${typeMeasurement}`;
+    const URL_CITY = `https://api.openweathermap.org/data/2.5/weather?q=${valueSearched}&appid=${API_KEY}&units=${typeMeasurement}&lang=${language}`;
 
     getDataWeather(URL_CITY, setSearchCity);
   };
@@ -50,13 +51,13 @@ function App() {
     searchCity === null
       ? navigator.geolocation.getCurrentPosition(success)
       : updateSearchCity(searchCity?.name);
-  }, [typeMeasurement]);
+  }, [typeMeasurement, language]);
 
   return (
     <main
       className={`${imgBgSave} bg-cover bg-center min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
     >
-      <form></form>
+      <FormLanguage setLanguage={setLanguage} language={language} />
       <Loader />
       <DarkMode />
       <FormSearchCity
@@ -65,15 +66,18 @@ function App() {
         updateSearchCity={updateSearchCity}
         setWeatherInfo={setWeatherInfo}
         success={success}
+        language={language}
       />
       <ModalErrorEmptyCitySearch
         searchEmpty={searchEmpty}
         setSearchEmpty={setSearchEmpty}
+        language={language}
       />
       <Weather
         typeMeasurement={typeMeasurement}
         setTypeMeasurement={setTypeMeasurement}
         validateCitySearch={validateCitySearch}
+        language={language}
       />
     </main>
   );
