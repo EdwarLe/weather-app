@@ -1,9 +1,7 @@
 export const handleChangeMeasurement = (setTypeMeasurement) => {
-  setTypeMeasurement((typeMeasurement) => 
+  setTypeMeasurement((typeMeasurement) =>
     typeMeasurement != "metric" ? "metric" : "imperial"
-    
   );
-
 };
 
 export const bgImgWeather = {
@@ -21,7 +19,7 @@ export const bgImgWeather = {
 
   "13d": "bg-[url('/images/snow.webp')]",
   "13n": "bg-[url('/images/snowN.webp')]",
- 
+
   "10d": "bg-[url('/images/moderateRain.webp')]",
   "10n": "bg-[url('/images/moderateRainN.webp')]",
 
@@ -30,5 +28,4 @@ export const bgImgWeather = {
 
   "11d": "bg-[url('/images/thunderstorm.webp')]",
   "11n": "bg-[url('/images/thunderstormN.webp')]",
-  
 };

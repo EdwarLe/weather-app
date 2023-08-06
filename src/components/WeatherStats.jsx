@@ -4,7 +4,9 @@ const WeatherStats = ({ validateCitySearch, src, typeMeassure }) => {
       <div>
         <img className="h-5 dark:invert" src={src} alt="" />
       </div>
-      <span className="text-sm">{validateCitySearch} {typeMeassure}</span>
+      <span className="text-sm">
+        {validateCitySearch} {typeMeassure}
+      </span>
     </article>
   );
 };
