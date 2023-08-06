@@ -5,7 +5,7 @@ const ModalErrorEmptyCitySearch = ({ searchEmpty, setSearchEmpty }) => {
   return (
     searchEmpty && (
       <section className="absolute min-h-screen w-full backdrop-blur-sm z-20 flex justify-center items-center p-4 transition-all">
-        <p className="text-white-700 col-span-3 text-center relative bg-slate-950 h-40 p-4 flex justify-center items-center rounded-2xl font-bold text-2xl">
+        <p className="text-white-700 col-span-3 text-center relative bg-cyan-500 h-40 p-4 flex justify-center items-center rounded-2xl font-bold text-2xl dark:bg-slate-950">
           !it is necessary to write a city!
           <span
             onClick={handleCloseModal}

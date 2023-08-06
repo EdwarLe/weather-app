@@ -6,7 +6,7 @@ const Weather = ({
   typeMeasurement,
   setTypeMeasurement,
   validateCitySearch,
-  updateSearchCity
+  updateSearchCity,
 }) => {
   const countryFound = (country) => {
     return country.alpha === validateCitySearch?.sys.country;
@@ -57,7 +57,9 @@ const Weather = ({
         </section>
       </section>
       <button
-        onClick={() => handleChangeMeasurement(setTypeMeasurement, updateSearchCity)}
+        onClick={() =>
+          handleChangeMeasurement(setTypeMeasurement, updateSearchCity)
+        }
         className="bg-white rounded-full w-40 py-2 text-blue-800 dark:bg-slate-950 dark:text-white"
       >
         {typeMeasurement === "metric" ? `Cambiar a °F` : `Cambiar a °C`}
