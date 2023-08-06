@@ -3,12 +3,13 @@ import "./App.css";
 import axios from "axios";
 import Weather from "./components/Weather";
 import { bgImgWeather } from "./components/temp";
+import Loader from "./components/Loader";
+import DarkMode from "./components/DarkMode";
 
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
   const [typeMeasurement, setTypeMeasurement] = useState("metric");
   const [searchCity, setsearchCity] = useState(null);
-  const [darkMode, setDarkMode] = useState(null);
 
   const API_KEY = "2927d2b080299fce6de576324ebf243f";
 
@@ -46,66 +47,49 @@ function App() {
 
   const resetLocation = (e) => {
     e.target.parentElement.reset();
-    setsearchCity(null);
+    setWeatherInfo(navigator.geolocation.getCurrentPosition(success));
   };
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   }, [typeMeasurement]);
 
-  const handleDarkMode = () => {
-    setDarkMode(darkMode === "dark" ? "light" :"dark")
-  };
+  
 
-  useEffect(() => {
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode('dark')
-    } else {
-      setDarkMode('light')
-    }
-  },[])
-
-  useEffect(() => {
-    if (darkMode === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  }, [darkMode]);
+  
 
   return (
-    <main
-      className={`${imgBgSave} bg-cover bg-center min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
-    >
-      <div onClick={handleDarkMode} className="top-1 right-4 absolute">
-        <i className="bx bxs-brightness-half text-3xl text-cyan-500 transition-all duration-500 cursor-pointer hover:rotate-180  dark:text-yellow-400"></i>
-      </div>
-      <form
-        onSubmit={handleCitySearch}
-        className="rounded-xl overflow-hidden max-w-full grid grid-rows-2 grid-cols-2 min-[400px]:grid-cols-[60%_20%_20%] min-[400px]:grid-rows-none"
+      <main
+        className={`${imgBgSave} bg-cover bg-center min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
       >
-        <input
-          id="btnCitySearch"
-          className="py-2 px-4 text-center col-span-2 min-[400px]:col-span-1 dark:bg-slate-950"
-          type="text"
-          placeholder="Type the city..."
-        />
-        <button className="bg-slate-950 py-2 px-4 flex justify-center items-center text-white dark:bg-sky-700">
-          Search
-        </button>
-        <a
-          onClick={resetLocation}
-          className="bg-slate-800 py-3 px-4 text-white cursor-pointer flex justify-center w-full dark:bg-sky-400"
+        <Loader />
+        <DarkMode />
+        <form
+          onSubmit={handleCitySearch}
+          className="rounded-xl overflow-hidden max-w-full grid grid-rows-2 grid-cols-2 min-[400px]:grid-cols-[60%_20%_20%] min-[400px]:grid-rows-none"
         >
-          Clear
-        </a>
-      </form>
-      <Weather
-        typeMeasurement={typeMeasurement}
-        setTypeMeasurement={setTypeMeasurement}
-        validateCitySearch={validateCitySearch}
-      />
-    </main>
+          <input
+            id="btnCitySearch"
+            className="py-2 px-4 text-center col-span-2 min-[400px]:col-span-1 dark:bg-slate-950"
+            type="text"
+            placeholder="Type the city..." autoComplete="off"
+          />
+          <button className="bg-slate-950 py-2 px-4 flex justify-center items-center text-white dark:bg-sky-700">
+            Search
+          </button>
+          <a
+            onClick={resetLocation}
+            className="bg-slate-800 py-3 px-4 text-white cursor-pointer flex justify-center w-full dark:bg-sky-400"
+          >
+            Clear
+          </a>
+        </form>
+        <Weather
+          typeMeasurement={typeMeasurement}
+          setTypeMeasurement={setTypeMeasurement}
+          validateCitySearch={validateCitySearch}
+        />
+      </main>
   );
 }
 
