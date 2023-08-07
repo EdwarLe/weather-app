@@ -55,8 +55,11 @@ function App() {
 
   return (
     <main
-      className={`${imgBgSave} bg-cover bg-center min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
+      className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
     >
+      <section
+        className={`${imgBgSave} bg-cover bg-center min-h-screen w-full absolute -z-10 dark:brightness-[35%]`}
+      ></section>
       <FormLanguage setLanguage={setLanguage} language={language} />
       <Loader />
       <DarkMode />
