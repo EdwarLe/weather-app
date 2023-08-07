@@ -8,6 +8,7 @@ import DarkMode from "./components/DarkMode";
 import ModalErrorEmptyCitySearch from "./components/ModalErrorEmptyCitySearch";
 import FormSearchCity from "./components/FormSearchCity";
 import FormLanguage from "./components/FormLanguage";
+import ModalErrorWrongCitySearch from "./components/ModalErrorWrongCitySearch";
 
 function App() {
   const [weatherInfo, setWeatherInfo] = useState(null);
@@ -16,6 +17,7 @@ function App() {
   const [searchEmpty, setSearchEmpty] = useState(false);
   const [language, setLanguage] = useState("en");
   const [loaderPage, setLoaderPage] = useState(true);
+  const [notFoundCountry, setNotFoundCountry] = useState(false);
 
   const API_KEY = "2927d2b080299fce6de576324ebf243f";
 
@@ -47,7 +49,9 @@ function App() {
       })
       .catch((err) => {
         err.request.status === 400 ? setSearchEmpty(true) : console.log(err);
-        err.request.status === 404 ? setSearchEmpty(true) : console.log(err);
+        err.request.status === 404
+          ? setNotFoundCountry(true)
+          : console.log(err);
       });
   };
 
@@ -90,6 +94,12 @@ function App() {
         searchEmpty={searchEmpty}
         setSearchEmpty={setSearchEmpty}
         language={language}
+      />
+      <ModalErrorWrongCitySearch
+        notFoundCountry={notFoundCountry}
+        setNotFoundCountry={setNotFoundCountry}
+        language={language}
+
       />
       <Weather
         typeMeasurement={typeMeasurement}
