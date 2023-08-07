@@ -29,3 +29,29 @@ export const bgImgWeather = {
   "11d": "bg-[url('/images/thunderstorm.webp')]",
   "11n": "bg-[url('/images/thunderstormN.webp')]",
 };
+
+export const iconWeather = {
+  "02d": "/images/sunCloud.png",
+  "02n": "/images/moonCloud.png",
+
+  "03d": "/images/twoClouds.png",
+  "03n": "/images/twoClouds.png",
+
+  "04d": "/images/threeClouds.png",
+  "04n": "/images/threeClouds.png",
+
+  "01d": "/images/sun.png",
+  "01n": "/images/moon.png",
+
+  "13d": "/images/snowBlue.png",
+  "13n": "/images/snowBlue.png",
+
+  "10d": "/images/lightRain.png",
+  "10n": "/images/lightRain.png",
+
+  "09d": "/images/sunRain.png",
+  "09n": "/images/moonRain.png",
+
+  "11d": "/images/thunderCloud.png",
+  "11n": "/images/thunderCloud.png",
+};

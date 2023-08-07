@@ -4,7 +4,7 @@ const FormLanguage = ({ setLanguage, language }) => {
   };
 
   return (
-    <form className="absolute top-1 left-4 flex gap-2 bg-white/50 text-slate-950 p-1 rounded-md dark:bg-black/50 dark:text-white border">
+    <form className="flex gap-2 bg-white/50 text-slate-950 p-1 rounded-md dark:bg-black/50 dark:text-white border">
       <label htmlFor="lang"> {language === "en" ? "Language" : "Idioma"}</label>
       <select
         name="laguages"

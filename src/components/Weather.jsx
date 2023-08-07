@@ -1,6 +1,7 @@
 import WeatherStats from "./WeatherStats";
 import countryList from "./../assets/slim-2.json";
 import { handleChangeMeasurement } from "./utils/temp";
+import { iconWeather } from "./utils/temp";
 
 const Weather = ({
   typeMeasurement,
@@ -25,15 +26,15 @@ const Weather = ({
           <h4 className="col-span-2 pt-4 capitalize">
             {validateCitySearch?.weather[0].description}
           </h4>
-          <span className="text-7xl font-extralight pl-4 min-[400px]:text-8xl">
+          <span className="text-7xl font-extralight px-4 min-[400px]:text-8xl">
             {typeMeasurement === "metric"
               ? `${Math.floor(validateCitySearch?.main.temp)}°C`
               : `${Math.floor(validateCitySearch?.main.temp)}°F`}
           </span>
-          <div className="w-3/4 min-[400px]:w-full">
+          <div className="w-3/4 min-[400px]:w-full pr-2">
             <img
-              src={`https://openweathermap.org/img/wn/${validateCitySearch?.weather[0].icon}@4x.png`}
-              alt=""
+              src={`${iconWeather[validateCitySearch?.weather[0].icon]}`}
+              alt="" className="mr-1-0"
             />
           </div>
         </section>

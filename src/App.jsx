@@ -15,6 +15,7 @@ function App() {
   const [searchCity, setSearchCity] = useState(null);
   const [searchEmpty, setSearchEmpty] = useState(false);
   const [language, setLanguage] = useState("en");
+  const [loaderPage, setLoaderPage] = useState(true);
 
   const API_KEY = "2927d2b080299fce6de576324ebf243f";
 
@@ -40,7 +41,10 @@ function App() {
   const getDataWeather = (url, set) => {
     axios
       .get(url)
-      .then(({ data }) => set(data))
+      .then(({ data }) => {
+        set(data);
+        // setLoaderPage(false)
+      })
       .catch((err) => {
         err.request.status === 400 ? setSearchEmpty(true) : console.log(err);
         err.request.status === 404 ? setSearchEmpty(true) : console.log(err);
@@ -53,6 +57,14 @@ function App() {
       : updateSearchCity(searchCity?.name);
   }, [typeMeasurement, language]);
 
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      setLoaderPage(false);
+      return () => {
+        window.removeEventListener();
+      };
+    });
+  }, []);
   return (
     <main
       className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
@@ -60,9 +72,12 @@ function App() {
       <section
         className={`${imgBgSave} bg-cover bg-center min-h-screen w-full absolute -z-10 dark:brightness-[35%]`}
       ></section>
-      <FormLanguage setLanguage={setLanguage} language={language} />
-      <Loader />
-      <DarkMode />
+      <section className="h-10 max-w-[600px] w-full absolute top-0 flex justify-between py-1 px-4">
+        <FormLanguage setLanguage={setLanguage} language={language} />
+        <DarkMode />
+      </section>
+
+      <Loader loaderPage={loaderPage} />
       <FormSearchCity
         setSearchCity={setSearchCity}
         setSearchEmpty={setSearchEmpty}

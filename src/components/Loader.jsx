@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 
-const Loader = () => {
-  const [loaderPage, setLoaderPage] = useState(true);
+const Loader = ({loaderPage}) => {
 
   const circles = "h-8 w-8 rounded-full";
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoaderPage(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoaderPage(false);
+  //   }, 3000);
+  // }, []);
   return (
     loaderPage && (
       <div className="min-h-screen absolute bg-slate-900 w-full z-10 flex justify-center items-center gap-12">
