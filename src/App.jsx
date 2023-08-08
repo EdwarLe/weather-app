@@ -66,7 +66,10 @@ function App() {
       className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
     >
       <section
-        className={validateCitySearch && `${imgBgSave} bg-cover bg-center min-h-screen w-full absolute -z-10 dark:brightness-[35%]`}
+        className={
+          validateCitySearch &&
+          `${imgBgSave} bg-cover bg-center min-h-screen w-full absolute -z-10 dark:brightness-[35%]`
+        }
       ></section>
       <section className="h-10 max-w-[600px] w-full absolute top-0 flex justify-between py-1 px-4">
         <FormLanguage setLanguage={setLanguage} language={language} />
@@ -74,14 +77,16 @@ function App() {
       </section>
 
       <Loader loaderPage={loaderPage} />
-      <FormSearchCity
-        setSearchCity={setSearchCity}
-        setSearchEmpty={setSearchEmpty}
-        updateSearchCity={updateSearchCity}
-        setWeatherInfo={setWeatherInfo}
-        success={success}
-        language={language}
-      />
+      {validateCitySearch && (
+        <FormSearchCity
+          setSearchCity={setSearchCity}
+          setSearchEmpty={setSearchEmpty}
+          updateSearchCity={updateSearchCity}
+          setWeatherInfo={setWeatherInfo}
+          success={success}
+          language={language}
+        />
+      )}
       <ModalErrorEmptyCitySearch
         searchEmpty={searchEmpty}
         setSearchEmpty={setSearchEmpty}
@@ -92,12 +97,14 @@ function App() {
         setNotFoundCountry={setNotFoundCountry}
         language={language}
       />
-      <Weather
-        typeMeasurement={typeMeasurement}
-        setTypeMeasurement={setTypeMeasurement}
-        validateCitySearch={validateCitySearch}
-        language={language}
-      />
+      {validateCitySearch && (
+        <Weather
+          typeMeasurement={typeMeasurement}
+          setTypeMeasurement={setTypeMeasurement}
+          validateCitySearch={validateCitySearch}
+          language={language}
+        />
+      )}
     </main>
   );
 }
