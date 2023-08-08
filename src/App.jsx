@@ -44,7 +44,8 @@ function App() {
     axios
       .get(url)
       .then(({ data }) => {
-        set(data);
+         set(data);
+         setLoaderPage(false)
       })
       .catch((err) => {
         err.request.status === 400 ? setSearchEmpty(true) : console.log(err);
@@ -60,11 +61,7 @@ function App() {
       : updateSearchCity(searchCity?.name);
   }, [typeMeasurement, language]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoaderPage(false);
-    }, 3000);
-  }, []);
+
   return (
     <main
       className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
