@@ -45,7 +45,6 @@ function App() {
       .get(url)
       .then(({ data }) => {
         set(data);
-        // setLoaderPage(false)
       })
       .catch((err) => {
         err.request.status === 400 ? setSearchEmpty(true) : console.log(err);
@@ -62,12 +61,9 @@ function App() {
   }, [typeMeasurement, language]);
 
   useEffect(() => {
-    window.addEventListener("load", () => {
+    setTimeout(() => {
       setLoaderPage(false);
-      return () => {
-        window.removeEventListener();
-      };
-    });
+    }, 3000);
   }, []);
   return (
     <main
@@ -99,7 +95,6 @@ function App() {
         notFoundCountry={notFoundCountry}
         setNotFoundCountry={setNotFoundCountry}
         language={language}
-
       />
       <Weather
         typeMeasurement={typeMeasurement}
