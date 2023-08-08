@@ -44,14 +44,14 @@ function App() {
     axios
       .get(url)
       .then(({ data }) => {
-         set(data);
-         setLoaderPage(false)
+        set(data);
+        setLoaderPage(false);
       })
       .catch((err) => {
         err.request.status === 400 ? setSearchEmpty(true) : console.log(err);
-        err.request.status === 404
-          ? setNotFoundCountry(true)
-          : console.log(err);
+        // err.request.status === 404
+        //   ? setNotFoundCountry(true)
+        //   : console.log(err);
       });
   };
 
@@ -60,7 +60,6 @@ function App() {
       ? navigator.geolocation.getCurrentPosition(success)
       : updateSearchCity(searchCity?.name);
   }, [typeMeasurement, language]);
-
 
   return (
     <main
