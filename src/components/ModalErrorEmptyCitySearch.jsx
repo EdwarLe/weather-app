@@ -6,8 +6,8 @@ const ModalErrorEmptyCitySearch = ({
 }) => {
   
   return (
-    searchEmpty && (
-      <section className="absolute min-h-screen w-full backdrop-blur-sm z-20 flex justify-center items-center p-4 transition-all">
+   (
+      <section className={`${searchEmpty ? 'bottom-0 ' : 'bottom-full '} transition-all duration-500 absolute min-h-screen w-full backdrop-blur-sm z-20 flex justify-center items-center p-4`}>
         <p className="text-white-700 text-center relative bg-cyan-500 p-8 flex justify-center items-center rounded-2xl font-bold text-2xl dark:bg-slate-950">
           {language === "en"
             ? "it is necessary to write a city!"

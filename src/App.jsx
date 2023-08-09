@@ -54,7 +54,6 @@ function App() {
           : console.log(err);
       });
   };
-
   useEffect(() => {
     searchCity === null
       ? navigator.geolocation.getCurrentPosition(success)
@@ -63,7 +62,7 @@ function App() {
 
   return (
     <main
-      className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white`}
+      className={`min-h-screen text-black flex justify-around flex-col items-center p-4 font-Lato relative dark:text-white overflow-hidden`}
     >
       <section
         className={
